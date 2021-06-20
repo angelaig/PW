@@ -197,7 +197,7 @@
                         <label class ="label_form_email" for="password_user">Correo </label><br>
                         <input class="input_form_modify" type="text" id="email" name="email"  value ="<?= $email?>"/>
                         <input class="input_form_modify" type="hidden" id="user" name="user" value= "<?= $user ?>" />
-                         <input class="input_form_modify" type="hidden" id="field" name="field" value= "name" />
+                         <input class="input_form_modify" type="hidden" id="field" name="field" value= "email" />
                          <button class="submit-button-name" type="submit" id="submit-user" name="submit-user"   >Modificar </button>
                         </form >
                  </section>

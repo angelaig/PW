@@ -46,19 +46,17 @@
                         
         function validate() {
 
+                
+                        user = document.forms["alta"]["user"].value;
+                        value = document.forms["alta"]["value"].value;
+                        field = document.forms["alta"]["field"].value;
 
+                    
 
-                     var user = $("#user").val();
-                     var value = $("#value").val();
-                     var field =  $("#field").val();
-
-                     console.log(user);
-                     console.log(value);
-                     console.log(field);
+                    /*
                      var password = $("#password").val();
                      var password_session = $_SESSION['password'];
-                     
-                  
+
                     //Si la contraseña dada no coincide con la de sesión
                     if( password != password_session ){
 
@@ -66,9 +64,9 @@
                         alert("Por favor introduzca correctamente su contraseña actual");
                          return false;
                     }
+                    */
 
-
-
+                    
                     if(field == "user"){
 
                            
@@ -91,7 +89,7 @@
 
                     }else if(field == "lastname"){
 
-                            if(!lastname.match(nameRegex)){
+                            if(!value.match(nameRegex)){
                             alert("Por favor introduzca un apellido válido sin números o caracteres especiales");
                             return false;
 
@@ -102,7 +100,7 @@
                     else if(field == "email"){
 
                         let emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-                        if (!email.match(emailRegex)) {
+                        if (!value.match(emailRegex)) {
                             alert("Debe introducir un email válido");
                             return false ;
                         }
@@ -127,6 +125,7 @@
 
 
                     }
+                        return true ;
      
         }
 
@@ -203,19 +202,7 @@
 
                     
               ?>
-                <nav class="categories">
-                    <?php 
-                            $secciones = Section::getAllSections();
-                            $n = sizeof($secciones);
-                            for ($x = 0; $x < $n; $x++) {
-
-                                echo '
-                                <form method = "POST" action = "seccionx.php" >
-                                <button class="seccion" type="submit" id="sname" name="sname"  value ='.$secciones[$x]["sname"].' >  '.  $secciones[$x]["sname"] .' </a>
-                                </form>';
-                            }
-                        ?>
-               </nav>
+              
 
               </section>
 
@@ -254,10 +241,10 @@
         
                     
          
-            <form name="modify_profile" class="modify_profile" method="POST" action="procesar_form_modificar.php" onsubmit="return validate()" >
+            <form name="alta" class="modify_profile" method="POST" action="procesar_form_modificar.php" onsubmit="return validate()" >
                        
                       
-                        <label class ="label_form_user" for="user">¿Está seguro/a de que desea cambiar el campo <?php echo $field ;?> ?.Introduzca el nuevo valor. </label><br>
+                        <label class ="label_form_user" for="user">¿Está seguro/a de que desea cambiar el campo <?php echo $field ;?> ?Introduzca el nuevo valor. </label><br>
                      
                        
                         <?php 

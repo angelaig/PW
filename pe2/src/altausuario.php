@@ -21,23 +21,32 @@
          $(document).ready(function() {
  
                 $("#submit").click(function() {
-
+                    /*
                 var user = $("#user").val();
                 var name = $("#name").val();
                 var lastname = $("#lastname").val();
                 var password= $("#password").val();
                 var cpassword = $("#cpassword").val();
-                var email = $("#email").val();
+                var email = $("#email").val();*/
              
                
+                        user = document.forms["alta"]["user"].value;
+                        name = document.forms["alta"]["name"].value;
+                        lastname = document.forms["alta"]["lastname"].value;
+
+                        password = document.forms["alta"]["password"].value;
+                        cpassword = document.forms["alta"]["cpassword"].value;
+                        email = document.forms["alta"]["email"].value;
+
 
 
                     //Campos obligatorios
+                    /*
                 if(user==''||name==''|| lastname==''||password==''||cpassword=='' ||email=='' ) {
                      alert("Por favor complete todos los campos  ");
                     return false;
                  }
-                
+                */
 
                
                 if (user.length <= 3 || user.length > 20){
@@ -73,7 +82,7 @@
 
 
                 //Validar email : expresión regular para validar emai
-                let emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+                let emailRegex = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$";
                 if (!email.match(emailRegex)) {
                     alert("Debe introducir un email válido");
                     return false ;
@@ -127,11 +136,9 @@
                     if (!empty($_SESSION['user'])){
 
                      echo '
-
                    
                    
                     <section class="box_" >
-
                     <section class="box-user blue">
                     <p class="user">' . $_SESSION['user'] .' </p>
                     </section>
@@ -139,7 +146,6 @@
                     <a class="admin" href="procesar_form_unlogin.php"><p>Desconectarse</p></a>
                     <a class="admin" href="profile_user.php"><p>Configurar perfil </p></a>
                         
-
                     </section>
                     
                     ';
@@ -148,7 +154,6 @@
                         if($_SESSION['user']=='admin'){
 
                         echo '<section class="form1-section">  
-
                         
                             <a class="submit-button-name" type="submit"  href="administracion.php"   > Administracion </a>           
         
@@ -161,16 +166,12 @@
                         echo '
                         <section class="sign-out">
                         <form class="form_sign_in" method="POST" action="procesar_form_login.php">
-
                             <label class ="label_form" for="user">user</label><br>
                             <input class="input_form" type="text" id="user" name="user" required/><br>
                             <label  class ="label_form" for="password">password</label><br>
                             <input class="input_form" type="password" id="password" name="password" required/><br><br>
-
                             
                             <input class="input_form_button" type="submit" id="send_user" name="send_user" />
-
-
                         </form>
                         
                    
@@ -209,27 +210,7 @@
 
 
 
-            
-             <nav class="categories">
-             <?php 
-                    $secciones = Section::getAllSections();
-                    $n = sizeof($secciones);
-                    for ($x = 0; $x < $n; $x++) {
 
-                        echo '
-                         <form method = "POST" action =  "seccionx.php" >
-                         <button class="seccion" type="submit" id="sname" name="sname"  value ='.$secciones[$x]["sname"].' >  '.  $secciones[$x]["sname"] .' </button>
-                        </form>';
-                    }
-                ?>
-            </nav>
-
-
-
-
-
-
-            </header>
             <main>
 
         
@@ -238,7 +219,7 @@
                     
 
 
-                    <form name="form1" class="modify-user" method="POST"  >
+                    <form name="alta" class="modify-user" method="POST"  >
                         <section class="form1-section">
                         <label class ="label_form_user" for="user">Usuario </label><br>
                         <input class="input_form_modify" type="text" id="user" name="user" /><br> 
