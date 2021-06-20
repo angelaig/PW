@@ -1,5 +1,7 @@
-z<?php
-   // session_start();
+<?php
+    session_start();
+    include 'sections_class.inc.php';
+
 ?>
 
 <!doctype php>
@@ -20,14 +22,17 @@ z<?php
  
                 $("#submit").click(function() {
 
-               // var cfilled = ["name_user", "password_user", "confirm_password_user"];
                 var user = $("#user").val();
                 var name = $("#name").val();
                 var lastname = $("#lastname").val();
                 var password= $("#password").val();
                 var cpassword = $("#cpassword").val();
                 var email = $("#email").val();
-                        
+             
+               
+
+
+                    //Campos obligatorios
                 if(user==''||name==''|| lastname==''||password==''||cpassword=='' ||email=='' ) {
                      alert("Por favor complete todos los campos  ");
                     return false;
@@ -40,17 +45,38 @@ z<?php
                     return false;
                 }
                
-            
+                let nameRegex = /^[a-zA-Z ]{2,30}$/;
+
+                if(!name.match(nameRegex)){
+                    alert("Por favor introduzca un nombre válido sin números o caracteres especiales");
+                    return false;
+
+                }
+                if(!lastname.match(nameRegex)){
+                    alert("Por favor introduzca un apellido válido sin números o caracteres especiales");
+                    return false;
+
+                }
                 
                 if (password != cpassword) {
 
-                    alert("Los campos de las"+ password+" contraseñas no coinciden"+cpassword);
+                        alert("Por favor contraseñas que coincidan");
                     return false;
                 }
-                if (cpassword.length < 1) {
-                    alert("La contraseña debe tener más de 8 caracteres");
-                    return false;
-                
+
+                let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})');
+
+                if(!strongPassword.test(password)) {
+                    alert("La contraseña debe tener al menos una mayúscula, una minúscula, un dígito , un carácter especial  y 8 caracteres de longitud");
+                    return false ;
+                }
+
+
+                //Validar email : expresión regular para validar emai
+                let emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+                if (!email.match(emailRegex)) {
+                    alert("Debe introducir un email válido");
+                    return false ;
                 }
 
 
@@ -66,7 +92,7 @@ z<?php
                 },
                 cache: false,
                 success: function(data) {
-                   alert(data);
+                 //  alert(data);
                    window.location.href = '../index.php';
                  
 
@@ -87,99 +113,45 @@ z<?php
         <body> 
     
 
-
-        <header class="root-header">
+            <header class="root-header">
                 <section class="up-header">
                    
-                    <img class="logodeezer" src="./imagenes/corner-deezer.jpg">
+                    <img class="logodeezer" src="../imagenes/corner-deezer.jpg">
                     
                     <p class="titledeezer">
-                        <section class="d">MUZER</section>
+                        <span class="d">MUZER</span>
                        
                     </p>
 
-          
-             <?php
-
-
-            
-
-
-                    if (!empty($_SESSION['user'])){
-
-                     echo '
-
-                   
-                   
-                    <section class="box_" >
-
-                    <section class="box-user blue">
-                    <p class="user">' . $_SESSION['user'] .' </p>
-                    </section>
-                   
-                    <a class="admin" href="src/procesar_form_unlogin.php"><p>Desconectarse</p></a>
-                    <a class="admin" href="src/profile_user.php"><p>Configurar perfil </p></a>
-                        
-
-                    </section>
-                    
-                    ';
-
-
-                        if($_SESSION['user']=='admin'){
-
-                        echo '<section class="form1-section">  
-
-                        
-                            <a class="submit-button-name" type="submit"  href="src/administracion.php"   > Administraciooon </a>           
-        
-                            </section>
-                            ';
-
-                        }
-                    }
-                    else {
-                        echo '
-                        <section class="sign-out">
-                        <form class="form_sign_in" method="POST" action="src/procesar_form_login.php">
-
-                            <label class ="label_form" for="user">user</label><br>
-                            <input class="input_form" type="text" id="user" name="user" required/><br>
-                            <label  class ="label_form" for="password">password</label><br>
-                            <input class="input_form" type="password" id="password" name="password" required/><br><br>
-
-                            
-                            <input class="input_form_button" type="submit" id="send_user" name="send_user" />
-
-
-                        </form>
-                        
-                        <a class="register" href="src/altausuario.php" >Nuevo usuario</a>
-                        </section>';
-                    }
 
                     
-              ?>
 
 
-            
 
-              </section>
+                </section>
                 <nav class="categories">
-                    <a class="seccion" href="src/seccion1.php">POP</a>
-                    <a class="seccion" href="src/seccion2.php">ROCK</a>
-                    <a class="seccion" href="src/seccion3.php">JAZZ</a>
-                    <a class="seccion" href="src/seccion3.php">FUNK</a>
-                    <a class="seccion" href="src/seccion3.php">R&B</a>
-                    <a class="seccion" href="src/seccion3.php">FUSSION</a>
-                    <a class="seccion" href="src/seccion3.php">FLAMENCO</a>
-                </nav>
+              <?php 
+                    $secciones = Section::getAllSections();
+                    $n = sizeof($secciones);
+                    for ($x = 0; $x < $n; $x++) {
+
+                        echo '
+                         <form method = "POST" action =  "seccionx.php" >
+                         <button class="seccion" type="submit" id="sname" name="sname"  value ='.$secciones[$x]["sname"].' >  '.  $secciones[$x]["sname"] .' </a>
+                        </form>';
+                    }
+                ?>
+            </nav>
+
+
+
+	
 
             </header>
 
             <section class="upper-new-item">
 
-             
+              
                 <section class="short-fields-modify">
                     
 
@@ -226,6 +198,8 @@ z<?php
         <section class="description-section">
 
         
+
+     
          <input class="submit-button" type="submit" id="submit" name="submit"   />
 
         </section>
