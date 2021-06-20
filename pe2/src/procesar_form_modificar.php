@@ -8,13 +8,9 @@ include 'users_class.inc.php';
 //$oUser = User::getUser($_SESSION['user']);
 
 
-$data['field_modify']= $_POST['field_modify'];
-$data['value_field_modify'] =  $_POST['value_field_modify'];
+$data['field']= $_POST['field'];
+$data['value'] =  $_POST['value'];
 $password = $$_POST['password'];
-
-//echo " FIELD MODIFY " .  $_POST['field_modify'] . " ";
-//echo " VALUE FIELD TO MODIFY " .  $_POST['value_field_modify'] . " ";
-//echo " USER " .  $_SESSION['user'] . " ";
 
 
 $oUser = User::getUser($_SESSION['user']);
@@ -30,21 +26,21 @@ $dataUser['email'] = $oUser->getField('email');
 //echo " VALUE USER SESSION " .  $dataUser['user'] . " ";
 
   
-  User::changeUser($dataUser, $data['field_modify'],$data['value_field_modify']);
+  User::changeUser($dataUser, $data['field'],$data['value']);
   // Asignar nueva sesión 
 
    $_SESSION['user'] = $dataUser['user'];
    $_SESSION['password'] = $password ;
 
-    if($data['field_modify'] == 'user' ){
-        $_SESSION['user'] = $data['value_field_modify'];
+    if($data['field'] == 'user' ){
+        $_SESSION['user'] = $data['value'];
 
     }
-    else if($data['field_modify'] == 'password'){
-        $_SESSION['password'] = $data['value_field_modify'];
+    else if($data['field'] == 'password'){
+        $_SESSION['password'] = $data['value'];
 
     }
-    
+    header("Location: profile_user.php");
 
     exit;
 

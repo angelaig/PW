@@ -5,6 +5,12 @@
 
     include 'users_class.inc.php';
 
+
+    $user = $_POST["user"];
+    $field = $_POST["field"];
+
+
+
     $oUser = User::getUser($_SESSION['user']);
 
     
@@ -33,60 +39,96 @@
             </title>
 	
 	<script>
-       
-         $(document).ready(function() {
-
-    
-                
-                $("#submit").click(function() {
-
-                     var value = $("#value").val();
-                     var password = $("#password").val();
-                   
-
-                            //Comprobaciones de usuario
-                        if (value.length <= 3 ||value.length > 20){
-                            alert("Tu nombre de usuario debe tener una longitud entre 3 y 20 caracteres");
-                            return false;
-                        }
-                  
-                    
-                    
-
-                        $.ajax({
-                        type: "POST",
-                        url: "procesar_form_modificar.php",
-                        data: {
-                        field_modify: 'user',
-                        value_field_modify: value,
-                        password : password 
-                
-                        },
-                        cache: false,
-                        success: function(data) {
-                         alert(data);
-                           // window.location.href = 'profile_user.php';
-                         window.location.href =   'profile_user.php';
-                      //  window.location.href = "procesar_form_modificar.php";
-                        },
-                        error: function(xhr, status, error) {
-                            console.error(xhr);
-                        }
-                        });
-
-
-
-
-
-                        
-
-                        
-                        
-               });
-                
-        });
      
 
+
+
+                        
+        function validate() {
+
+
+
+                     var user = $("#user").val();
+                     var value = $("#value").val();
+                     var field =  $("#field").val();
+
+                     console.log(user);
+                     console.log(value);
+                     console.log(field);
+                     var password = $("#password").val();
+                     var password_session = $_SESSION['password'];
+                     
+                  
+                    //Si la contraseña dada no coincide con la de sesión
+                    if( password != password_session ){
+
+                        
+                        alert("Por favor introduzca correctamente su contraseña actual");
+                         return false;
+                    }
+
+
+
+                    if(field == "user"){
+
+                           
+                            if (value.length <= 3 || value.length > 20){
+                                alert("Tu nombre de usuario debe tener una longitud entre 3 y 20 caracteres");
+                                return false;
+                            }
+
+                 
+                    }else if(field == "name"){
+
+                            let nameRegex = /^[a-zA-Z ]{2,30}$/;
+
+                            if(!value.match(nameRegex)){
+                                alert("Por favor introduzca un nombre válido sin números o caracteres especiales");
+                                return false;
+
+                            }
+
+
+                    }else if(field == "lastname"){
+
+                            if(!lastname.match(nameRegex)){
+                            alert("Por favor introduzca un apellido válido sin números o caracteres especiales");
+                            return false;
+
+                            }
+
+
+                    }
+                    else if(field == "email"){
+
+                        let emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+                        if (!email.match(emailRegex)) {
+                            alert("Debe introducir un email válido");
+                            return false ;
+                        }
+
+
+
+                    }else if( field == "password"){
+                        var cpassword =  $("#cpassword").val();
+                        if (value != cpassword) {
+
+                                alert("Por favor contraseñas que coincidan");
+                                return false;
+                          }
+
+                          let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})');
+
+                            if(!strongPassword.test(value)) {
+                                alert("La contraseña debe tener al menos una mayúscula, una minúscula, un dígito , un carácter especial  y 8 caracteres de longitud");
+                                return false ;
+                                }
+
+
+
+                    }
+     
+        }
 
     </script>
         </head>
@@ -124,26 +166,53 @@
 	
 
             </header>
+        
+        <main>
 
-        <section class="upper-new-item">
+        <section class="short-fields-modify" >
 
             
-            <section class="short-fields-modify">
+        
                     
          
-            <form name="modify_profile" class="modify_profile" method="POST"  >
+            <form name="modify_profile" class="modify_profile" method="POST" action="procesar_form_modificar.php" onsubmit="return validate()" >
                        
                       
-                        <label class ="label_form_user" for="user">¿Está seguro/a de que desea cambiar el campo user? Introduzca el nuevo valor. </label><br>
+                        <label class ="label_form_user" for="user">¿Está seguro/a de que desea cambiar el campo <?php echo $field ;?> ?.Introduzca el nuevo valor. </label><br>
                      
-                        <input class="input_form_modify" type=text id= "value" name= "value" />
-                        <input class="input_form_modify" type=text id= "password" name= "password" />
-                        <button class="submit-button" type="submit" id="submit" name="submit"   >Modificar </button>
+                       
+                        <?php 
+                            if ($field =="password"){
+
+                                echo' <input class="input_form_modify" type=password id= "value" name= "value" />';
+
+
+                                echo  '<section class="form1-section">
+                                <label class ="label_form_password" for="cpassword">confirma password  </label><br>
+                                <input class="input_form_modify" type="password" id="cpassword" name="cpassword" /><br>  
+                              
+                                </section>';
+                            }else{
+
+                                    echo ' <input class="input_form_modify" type=text id= "value" name= "value" />';
+
+                            }
+                         ?>
+                        <input class="input_form_modify" type=hidden id= "user" name= "user" value= "<?php echo $user; ?>" />
+                        <input class="input_form_modify" type=hidden id= "field" name= "field" value= "<?php echo $field ;?>" />
+
+
+
+
+                       <!-- <label class ="label_form_user" for="password">Contraseña </label>
+                        <input class="input_form_modify" type=password id= "password" name= "password" />
+                        -->
+                        <button class="submit-button-name" type="submit" id="submit-user" name="submit-user"   >Modificar </button>
                       
 
 
              </form>
-            </section>
+           
           
         </section>
         

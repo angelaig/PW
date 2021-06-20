@@ -60,7 +60,7 @@
                         echo '<section class="form1-section">  
 
                         
-                            <a class="submit-button-name" type="submit"  href="src/administracion.php"   > Administraciooon </a>           
+                            <a class="submit-button-name" type="submit"  href="src/administracion.php"   > Administracion </a>           
         
                             </section>
                             ';

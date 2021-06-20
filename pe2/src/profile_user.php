@@ -33,38 +33,6 @@
 	<script>
        
 
-        $(document).ready(function() {
- 
-                    $("#submit-user").click(function() {
-
-                    // var cfilled = ["name_user", "password_user", "confirm_password_user"];
-                    var user = "user";
-                   
-
-
-                    $.ajax({
-                    type: "POST",
-                    url: "modificar_user.php",
-                    data: {
-                    field_modify: user,
-                    },
-                    cache: false,
-                    success: function(data) {
-                     //   alert(data);
-                        window.location.href = 'modificar_user.php';
-                    
-
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr);
-                    }
-                    });
-                    
-                    });
-                    
-                    });
-
-
      
 
 
@@ -164,76 +132,79 @@
 
             </header>
 
-        <section class="upper-new-item">
+                    <section>
 
-             <section class="new-photo-user">
-
-            <img class="new-img-item" src="../imagenes/select-img.webp">
-              
-            <input type=button class="input_form_photo" value="add photo">
-            </section> 
+        
             <section class="short-fields-modify">
                     
             
 
-                   <form name="form1" class="modify-user-form" method="POST"  >
+                 
                         <section class="form1-section"> 
-                      
+                        <form method="POST" action ="modificar_user.php" >
                         <label class ="label_form_user" for="user">Usuario </label><br>
                         <input class="input_form_modify" type="text" id="user" name="user" value= "<?= $user ?>" />
+                        <!--Mando el user (clave primaria y el campo a modificar) -->
+                        <input class="input_form_modify" type="hidden" id="field" name="field" value= "user" />
+                        <input class="input_form_modify" type="hidden" id="user" name="user" value= "<?= $user ?>" />
                         <button class="submit-button-name" type="submit" id="submit-user" name="submit-user"   >Modificar </button>
+                        </form>
                         </section>
                       
    
                         <section class="form1-section">
+                        <form method="POST" action ="modificar_user.php" >
                         <label class ="label_form_name" for="name_user">Nombre </label><br>
                         <input class="input_form_modify" type="text" id="name" name="name" value= "<?= $name ?>"/>
-                        <button class="submit-button-name" type="submit" id="sbumit-name" name="submit-name"    >Modificar </button>
+
+                        <input class="input_form_modify" type="hidden" id="user" name="user" value= "<?= $user ?>" />
+                        <input class="input_form_modify" type="hidden" id="field" name="field" value= "name" />
+                        <button class="submit-button-name" type="submit" id="submit-user" name="submit-user"   >Modificar </button>
+                        </form>
                         </section>
 
                         <section class="form1-section">
+                        <form method="POST" action ="modificar_user.php" >
                         <label class ="label_form_lastname" for="name_user">Apellido </label><br>
-                        <input class="input_form_modify" type="text" id="last_name" name="last_name" value ="<?= $lastname ?>" /><
-                        <button class="submit-button-name" type="submit" id="submit-lastname" name="submit-lastname"   >Modificar </button>
+                        <input class="input_form_modify" type="text" id="last_name" name="last_name" value ="<?= $lastname ?>" />
+                        <input class="input_form_modify" type="hidden" id="user" name="user" value= "<?= $user ?>" />
+                        <input class="input_form_modify" type="hidden" id="field" name="field" value= "lastname" />
+                        <button class="submit-button-name" type="submit" id="submit-user" name="submit-user"   >Modificar </button>
+                        </form>
                         </section>
+
+
+
                         <section class="form1-section">
+                        <form method="POST" action ="modificar_user.php" >
                         <label class ="label_form_password" for="password_user">Contraseña </label><br>
                         <input class="input_form_modify" type="password" id="password_user" name="password_user" value ="password" />
-                        <button class="submit-button-name" type="submit" id="submit-password" name="submit-password"   >Modificar </button>
-                        </section>
-                        <section class="form1-section">  
-                        <label class ="label_form_email" for="password_user">Correo </label><br>
-                        <input class="input_form_modify" type="text" id="email" name="email"  value ="<?= $email?>"/>
-                        <button class="submit-button-name" type="submit" id="submit-email" name="submit-email"   >Modificar </button>
+                        <input class="input_form_modify" type="hidden" id="user" name="user" value= "<?= $user ?>" />
+                        <input class="input_form_modify" type="hidden" id="field" name="field" value= "password" />
+                        <button class="submit-button-name" type="submit" id="submit-user" name="submit-user"   >Modificar </button>
+                        </form>
                         </section>
 
+
+                        <section class="form1-section"> 
+                        <form method="POST" action ="modificar_user.php" > 
+                        <label class ="label_form_email" for="password_user">Correo </label><br>
+                        <input class="input_form_modify" type="text" id="email" name="email"  value ="<?= $email?>"/>
+                        <input class="input_form_modify" type="hidden" id="user" name="user" value= "<?= $user ?>" />
+                         <input class="input_form_modify" type="hidden" id="field" name="field" value= "name" />
+                         <button class="submit-button-name" type="submit" id="submit-user" name="submit-user"   >Modificar </button>
                         </form >
                  </section>
                 
 
             
-            </section>
+        
           
         </section>
                  
-
-        <section class="description-section">
-
-        
-
-            <label class ="label_form" for="description_form">Preséntate </label><br>
-
-            <form  name="form2" class="new-item-register2" method="POST" >
-                <textarea class="input_form_description" type="text" id="description_form" name="description_form" >
-                </textarea>
-
-            </form>
-         
-                
-         <!--   <input class="submit-button" type="submit" id="submit" name="submit"  onclick="submitForms()" /> -->
-         <input class="submit-button" type="submit" id="submit" name="submit"   />
-
         </section>
+   
+       
     
         </main>
 

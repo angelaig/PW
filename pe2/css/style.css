@@ -829,7 +829,7 @@ li{
 
 .form1-section{
     display: flex;
-    flex-direction: row;
+  flex-direction: column;
     align-items: center;
     margin-top: 3%;
     margin-left: 1vw;
