@@ -1,18 +1,65 @@
-<!DOCTYPE html>
-    <html>
+<?php
+   // session_start();
+
+    session_start();
+
+    include 'items_class.inc.php';
+    include 'sections_class.inc.php';
+
+
+    $oItem = Item::getItem((int)$_POST['id']);
+    $id  = $oItem->getField('id');
+    $artist = $oItem->getField('artist');
+    $genre = $oItem->getField('genre');
+    $single = $oItem->getField('single');
+    $img = $oItem->getField('img');
+ 
+    
+   
+?>
+   
+
+
+<!doctype php>
+    <php>
+
+
         <head>
+
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
             <meta content="width=device-width, initial-scale=1" name="viewport" />
             <link rel="stylesheet" href="../css/style.css">
             <link rel="icon" type="image/png" href="../imagenes/deezer.png">
             <title>
                Muzer
             </title>
+        
+
+
         </head>
-        <body>
+        <script>
+                                    
+                var loadFile = function(event) {
+                                            var output = document.getElementById('output');
+                                            output.src = URL.createObjectURL(event.target.files[0]);
+                                            output.onload = function() {
+                                            URL.revokeObjectURL(output.src) // free memory
+                                            }
+                };
+                            
+            
+                    //Comprobar que género es de una sección
+             
+
+        </script>
+
+
+        <body> 
+    
         <header class="root-header">
                 <section class="up-header">
                    
-                    <img class="logodeezer" src="../imagenes/corner-deezer.jpg">
+                    <img class="logodeezer" src="./imagenes/corner-deezer.jpg">
                     
                     <p class="titledeezer">
                         <section class="d">MUZER</section>
@@ -21,6 +68,11 @@
 
           
              <?php
+
+
+            
+
+
                     if (!empty($_SESSION['user'])){
 
                      echo '
@@ -47,7 +99,7 @@
                         echo '<section class="form1-section">  
 
                         
-                            <a class="submit-button-name" type="submit"  href="administracion.php"   > Administracion </a>           
+                            <a class="submit-button-name"   href="administracion.php"   > Administracion </a>           
         
                             </section>
                             ';
@@ -70,109 +122,105 @@
 
                         </form>
                         
-                   
+                        <a class="register" href="altausuario.php" >Nuevo usuario</a>
                         </section>';
                     }
 
                     
               ?>
 
-              </section>
-
-
-
 
             
-             <nav class="categories">
-             <?php 
-                    $secciones = Section::getAllSections();
-                    $n = sizeof($secciones);
-                    for ($x = 0; $x < $n; $x++) {
 
-                        echo '
-                         <form method = "POST" action =  "seccionx.php" >
-                         <button class="seccion" type="submit" id="sname" name="sname"  value ='.$secciones[$x]["sname"].' >  '.  $secciones[$x]["sname"] .' </button>
-                        </form>';
-                    }
-                ?>
-            </nav>
+              </section>
+         
 
+              <nav class="categories">
+                    <?php 
+                            $secciones = Section::getAllSections();
+                            $n = sizeof($secciones);
+                            for ($x = 0; $x < $n; $x++) {
 
-
-
-
-
+                                echo '
+                                <form method = "POST" action = "seccionx.php" >
+                                <button class="seccion" type="submit" id="sname" name="sname"  value ='.$secciones[$x]["sname"].' >  '.  $secciones[$x]["sname"] .' </button>
+                                </form>';
+                            }
+                        ?>
+               </nav>
             </header>
 
-
-
-       
-
-
-        <main >
-         
-            
-            <section class="upper-new-item">
-                    <img class="new-img" src="../imagenes/queen.jpg">
-                  
-                   
-                  
-                <section class="short-fields">
-                    <section class="short-fields-right" >
-
-                        <label class ="label_form" for="name_artist">Artist </label><br>
-                     
-                        <label class ="label_form" for="name_genre">Genre </label><br>
-                       
-                        <label class ="label_form" for="name_single">Single </label><br>
-                        
-            
-                    </section>
-                    
-                    <section class="short-fields-left" >
-                            
-                                
-                        <input class="input_form" type="text" id="name_artist" name="name_artist" value="Queen" readonly/><br>
-
-                                
-                        <input class="input_form" type="text" id="name_genre" name="name_genre " value="ROCK" readonly/><br>
-                        
-                    
-                        <input class="input_form" type="text" id="name_single" name="name_single" value="Bohemian" readonly/><br>
-            
-                 </section>
+           
+            <main class="mainindex">
 
                 
-                </section>
-              
-            </section>
-                     
-
-            <section class="description-section">
-
-            
-
-                <label class ="label_form" for="description_form">Descripción </label><br>
-               
-                 <p class= "description-text"> Grupo muy famoso </p>
-             
-       
-
-            </section>
 
     
+            <section class="upper-new-item">
+
+         
+                    <section class="new-photo-user">
+                  
+
+                  
+                    
+                    <!--<p><label for="file" style="cursor: pointer;">Upload Image</label></p>-->
+                    <p><img  id="output" class="new-img-item" src="../imagenes/<?php echo $img;?>" width="200" /></p>
+
+                 
+                    </section> 
+
+
+
+                <section class="short-fields-modify">
+                 
+                        <section class="form1-section">
+                                <label class ="label_form_name" for="artist">Artist </label><br>
+                            
+                                <input class="input_form_modify" type="text" id="artist" name="artist"  value= "<?php echo $artist ;?>"  /><br> 
+                               
+                    
+                        </section>
+
+                        <section class="form1-section">
+                                    <label class ="label_form_name" for="genre">Genre </label><br>
+                                  
+                                    <input class="input_form_modify" type="text" id="genre" name="genre"  value= "<?php echo $genre; ?>" />
+                                    
+                        </section>
+                   
+                        <section class="form1-section">
+                                    <label class ="label_form_lastname" for="single">Single </label><br>
+                                 
+                                    <input class="input_form_modify" type="text" id="single" name="single"  value= "<?php echo $single; ?>" /><br>
+                                  
+                        </section>
+                     
+
+             
+
+
+                </section>
+                
+            </section>
+         
+     
 
 
 
 
 
-
-
-
-        </main>
+                               
+            </main>
+   
+        
+           
             <footer class="footer">
                 <a href="contacto.html" >Contacto</a>
                 <a href="../como_se_hizo.pdf" >Cómo se hizo</a>
             </footer>
+          
         </body>
-    </html>
+<php>
+
+

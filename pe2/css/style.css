@@ -692,7 +692,19 @@ li{
     justify-content: space-around;
 }
 
+.title2-button{
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    font-family: 'Courier New', Courier, monospace, sans-serif;
+    color: rgb(206, 213, 216);
+    text-decoration: underline;
+    font-size: 50px;
+    cursor: pointer;
+    margin-left: 40%;
 
+
+}
 
 
 

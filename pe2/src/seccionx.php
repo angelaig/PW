@@ -7,8 +7,8 @@
     $section = $_POST["sname"];
 ?>
 
-<!doctype html>
-    <html>
+<!doctype php>
+    <php>
         <head>
             <link rel="stylesheet" href="../css/style.css">
             <link rel="icon" type="image/png" href="../imagenes/deezer.png">
@@ -137,17 +137,22 @@
                               echo '<section class="itemsrow">';
 
                                                  for ( $j=0 ; $j < 3 ; $j++) {
-                                                    echo     '<a  class="item2" href="itemx.html" >                                        
+                                                    echo     '<section class="item2" href="itemx.php" >                                        
                                                         <img class="imgitem" src="../imagenes/'.$items[$x+$j]["img"] .'"> 
                                                             
-                                                                <p class="title2">
+
+                                                        <form method = "POST" action = "itemx.php" >
+                                                                <button class="title2-button" type="submit" id="id" name="id"  value ='.$items[$x+$j]["id"].'>
                                                                 '.  $items[$x+$j]["artist"] .'
-                                                                </p><br>
+                                                                </button><br>
+                                                        </form>
                                                                 <p class="description">
                                                                 '.  $items[$x+$j]["single"] .'
                                                                 </p>
-                                                                
-                                                        </a>';
+                                                              
+                                                               
+                                                               
+                                                        </section>';
                                                  }
                             
 
@@ -166,16 +171,16 @@
 
 
             <section class="navigate-pages">
-                <a class="left-arrow"  href="seccion1.html">
+                <a class="left-arrow"  href="seccion1.php">
                     <img class="arrows" src="../imagenes/left.png">
                 </a>
-                <a class="actividad primera-actividad" href="seccion1.html"> 1 </a>
-                <a class="sections" href="seccion1.html"> 2  </a>
-                <a class="sections" href="seccion2.html"> 3 </a>
-                <a class="sections" href="seccion3.html"> 4 </a>
-                <a class="sections" href="seccion3.html"> 5 </a>
-                <a class="sections" href="seccion3.html"> 6 </a>
-                <a  class="right-arrow" href="seccion1.html">
+                <a class="actividad primera-actividad" href="seccion1.php"> 1 </a>
+                <a class="sections" href="seccion1.php"> 2  </a>
+                <a class="sections" href="seccion2.php"> 3 </a>
+                <a class="sections" href="seccion3.php"> 4 </a>
+                <a class="sections" href="seccion3.php"> 5 </a>
+                <a class="sections" href="seccion3.php"> 6 </a>
+                <a  class="right-arrow" href="seccion1.php">
                     <img class="arrows" src="../imagenes/right.png">
                 </a>
             </section>
@@ -184,9 +189,9 @@
 
         </main>
             <footer class="footer">
-                <a href="contacto.html" >Contacto</a>
+                <a href="contacto.php" >Contacto</a>
                 <a href="../como_se_hizo.pdf" >Cómo se hizo</a>
             </footer>
               
       </body>
-      </html>
+      </php>

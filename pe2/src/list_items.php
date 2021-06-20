@@ -121,7 +121,7 @@
 
                                 echo '
                                 <form method = "POST" action = "seccionx.php" >
-                                <button class="seccion" type="submit" id="sname" name="sname"  value ='.$secciones[$x]["sname"].' >  '.  $secciones[$x]["sname"] .' </a>
+                                <button class="seccion" type="submit" id="sname" name="sname"  value ='.$secciones[$x]["sname"].' >  '.  $secciones[$x]["sname"] .' </button>
                                 </form>';
                             }
                         ?>
@@ -158,7 +158,7 @@
 
                         echo '
                            
-                        <a  class="item2" href="itemx.html" >                                        
+                        <section  class="item2"  >                                        
                                <img class="imgitem" src="../imagenes/'.$items[$x]["img"] .'"> 
                               
                                <p class="title2">
@@ -181,7 +181,7 @@
                                    <button class="submit-button-name" type="submit" id="id" name="id"     href = "borrar_item.php"  value ='.$items[$x]["id"].'>Borrar </button> 
                                 </form>
                                
-                       </a>';
+                       </section>';
                            
                         }
 
