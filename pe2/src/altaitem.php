@@ -20,7 +20,8 @@
 
         </head>
 
-        <script>
+   
+<script type="text/javascript">
                                     
                 var loadFile = function(event) {
                                             var output = document.getElementById('output');
@@ -33,6 +34,40 @@
             
                     //Comprobar que género es de una sección
              
+
+                
+
+                    //Prohibimos creación vacía de sección
+                    function validate(){
+
+
+
+
+                        artist = document.forms["alta"]["artist"].value;
+                        genre = document.forms["alta"]["genre"].value;
+                        single = document.forms["alta"]["single"].value;
+
+                        if( artist == null || artist =="" ||
+                            genre == null || genre =="" ||
+                            single == null || single ==""
+                        
+                        
+                        
+                          ) {
+                            alert("Por favor rellene todos los campos imprescindibles (excepto la foto ");
+                            return false;
+
+
+
+                    }
+                    return true;
+
+                    };
+
+
+
+
+
 
         </script>
         <body> 
@@ -141,7 +176,7 @@
         
         <main >
          
-        <form name="form1" class="modify-user" method="POST"  action ="procesar_form_altaitem.php">
+        <form  class="modify-user" method="POST"  name= "alta" action ="procesar_form_altaitem.php" onsubmit="return validate();">
             <section class="upper-new-item">
 
          

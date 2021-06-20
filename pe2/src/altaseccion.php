@@ -1,6 +1,6 @@
 <?php
     session_start();
-    
+    include_once 'sections_class.inc.php';
 ?>
 
 <!doctype php>
@@ -27,9 +27,10 @@
 
     //Prohibimos creación vacía de sección
     function validate(){
-        sname = document.getElementById("sname").value;
+    
+        sname = document.forms["alta"]["sname"].value;
 
-        if( sname == null || sname=="" ) {
+        if( sname == null || sname=="" ||  sname==" " ) {
             alert("El campo no puede estar  vacío");
             return false;
        }
@@ -123,6 +124,20 @@
 
 
 
+              <nav class="categories">
+                    <?php 
+                            $secciones = Section::getAllSections();
+                            $n = sizeof($secciones);
+                            for ($x = 0; $x < $n; $x++) {
+
+                                echo '
+                                <form method = "POST" action = "seccionx.php" >
+                                <button class="seccion" type="submit" id="sname" name="sname"  value ='.$secciones[$x]["sname"].' >  '.  $secciones[$x]["sname"] .' </button>
+                                </form>';
+                            }
+                        ?>
+               </nav>
+
 
            
 
@@ -139,7 +154,7 @@
     
                                         <section class="alta-seccion-add-section"  >                                        
                                       
-                                        <form  class="add-section-form" method="POST" action= "procesar_form_altaseccion.php" onsubmit="return validate();"  >
+                                        <form  class="add-section-form" method="POST" name="alta" action= "procesar_form_altaseccion.php" onsubmit="return validate();"  >
                                        
                                         <label class ="label_form_seccion" for="sname">Nombre de nueva sección </label><br>
                                         <input class="input_form_modify" type="text" id="sname" name="sname" /><br> 
