@@ -206,6 +206,7 @@ nav ul{
     align-items: center;
     max-height: 200px;
     background-color:#7e6bb1;
+    width: 100%;
    
 }
 li{
@@ -705,7 +706,12 @@ li{
 
 
 }
-
+.description-single{
+    color: rgb(206, 213, 216);
+    font-size: 30px;
+    margin-left: 3%;
+    margin-top: 20%;
+}
 
 
 

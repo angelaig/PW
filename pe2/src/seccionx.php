@@ -137,6 +137,7 @@
                               echo '<section class="itemsrow">';
 
                                                  for ( $j=0 ; $j < 3 ; $j++) {
+                                                     if( $x+$j < $n){
                                                     echo     '<section class="item2" href="itemx.php" >                                        
                                                         <img class="imgitem" src="../imagenes/'.$items[$x+$j]["img"] .'"> 
                                                             
@@ -146,13 +147,14 @@
                                                                 '.  $items[$x+$j]["artist"] .'
                                                                 </button><br>
                                                         </form>
-                                                                <p class="description">
+                                                                <p class="description-single">
                                                                 '.  $items[$x+$j]["single"] .'
                                                                 </p>
                                                               
                                                                
                                                                
                                                         </section>';
+                                                     }
                                                  }
                             
 
