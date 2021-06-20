@@ -1,42 +1,14 @@
-<?php
-    session_start();
-         
-    include 'sections_class.inc.php';
-?>
-
-<!doctype php>
-    <php>
-
-
+<!DOCTYPE html>
+    <html>
         <head>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
             <meta content="width=device-width, initial-scale=1" name="viewport" />
             <link rel="stylesheet" href="../css/style.css">
             <link rel="icon" type="image/png" href="../imagenes/deezer.png">
             <title>
                Muzer
             </title>
-
         </head>
-
-        <script>
-                                    
-                var loadFile = function(event) {
-                                            var output = document.getElementById('output');
-                                            output.src = URL.createObjectURL(event.target.files[0]);
-                                            output.onload = function() {
-                                            URL.revokeObjectURL(output.src) // free memory
-                                            }
-                };
-                            
-            
-                    //Comprobar que género es de una sección
-             
-
-        </script>
-        <body> 
-    
+        <body>
         <header class="root-header">
                 <section class="up-header">
                    
@@ -134,77 +106,73 @@
 
 
 
+       
 
 
-            </header>
-
-        
         <main >
          
-        <form name="form1" class="modify-user" method="POST"  action ="procesar_form_altaitem.php">
+            
             <section class="upper-new-item">
-
-         
-                    <section class="new-photo-user">
-                    <p><input type="file"  name="image" id="image"  onchange="loadFile(event)" ></p>
-
-                    
-                    <!--<p><label for="file" style="cursor: pointer;">Upload Image</label></p>-->
-                    <p><img  id="output" class="new-img-item" src="../imagenes/select-img.webp" width="200" /></p>
-                    -
-                    </section> 
-
-
-
-                <section class="short-fields-modify">
-                 
-                        <section class="form1-section">
-                        <label class ="label_form_name" for="artist">Artist </label><br>
-                        <input class="input_form_modify" type="text" id="artist" name="artist" /><br> 
-                    
-                        </section>
-
-                        <section class="form1-section">
-                        <label class ="label_form_name" for="genre">Genre </label><br>
-                        <select class="input_form_modify" type="text" id="genre" name="genre" /><br>
-                        
-
-                            <?php 
-                                $secciones = Section::getAllSections();
-                                $n = sizeof($secciones);
-                                for ($x = 0; $x < $n; $x++) {
-
-                                    echo '<option value="'.$secciones[$x]["sname"].'">'.$secciones[$x]["sname"].'</option>';
-                                   
-                                      
-                                }
-                            ?>
-
-                        </select>
-
+                    <img class="new-img" src="../imagenes/queen.jpg">
+                  
                    
-                        <section class="form1-section">
-                        <label class ="label_form_lastname" for="single">Single </label><br>
-                        <input class="input_form_modify" type="text" id="single" name="single" /><br>
-                        </section>
+                  
+                <section class="short-fields">
+                    <section class="short-fields-right" >
+
+                        <label class ="label_form" for="name_artist">Artist </label><br>
+                     
+                        <label class ="label_form" for="name_genre">Genre </label><br>
+                       
+                        <label class ="label_form" for="name_single">Single </label><br>
+                        
+            
+                    </section>
+                    
+                    <section class="short-fields-left" >
+                            
+                                
+                        <input class="input_form" type="text" id="name_artist" name="name_artist" value="Queen" readonly/><br>
+
+                                
+                        <input class="input_form" type="text" id="name_genre" name="name_genre " value="ROCK" readonly/><br>
+                        
+                    
+                        <input class="input_form" type="text" id="name_single" name="name_single" value="Bohemian" readonly/><br>
+            
+                 </section>
+
+                
+                </section>
+              
+            </section>
                      
 
+            <section class="description-section">
+
+            
+
+                <label class ="label_form" for="description_form">Descripción </label><br>
+               
+                 <p class= "description-text"> Grupo muy famoso </p>
              
+       
 
-
-                </section>
-                     <input class="submit-button" type="submit" id="submit" name="submit"  />
             </section>
-         
-        </form >
 
-            </main>
+    
 
 
 
+
+
+
+
+
+        </main>
             <footer class="footer">
                 <a href="contacto.html" >Contacto</a>
                 <a href="../como_se_hizo.pdf" >Cómo se hizo</a>
             </footer>
         </body>
-<php>
+    </html>

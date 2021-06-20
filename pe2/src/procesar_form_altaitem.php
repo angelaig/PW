@@ -11,7 +11,8 @@ $data['artist'] = $_POST['artist'];
 $data['genre'] = $_POST['genre'] ;
 $data['single'] = $_POST['single'] ;
 //$data['img'] = basename($_FILES["image"]["name"]);
-$data['img'] =  '../imagenes/'.$_POST['image'];
+//$data['img'] =  '../imagenes/'.$_POST['image'];
+$data['img'] =  $_POST['image'];
 
 
 print_r($data);

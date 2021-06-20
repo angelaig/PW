@@ -990,6 +990,9 @@ li{
     margin: 5px;
     margin-top: 4%;
 }
+.seccion-nav-button{
+    opacity: 0.00000000000000001;
+}
 /***********************************************************************************************************************************/
 /*Adaptación diseño*/
 /* portrait : altura mayor que anchura , típico de móvil */

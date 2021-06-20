@@ -3,7 +3,8 @@
 
     session_start();
 
-    include 'users_class.inc.php';
+    include_once 'users_class.inc.php';
+ 
 
     $oUser = User::getUser($_SESSION['user']);
 
@@ -35,7 +36,7 @@
         <header class="root-header">
                 <section class="up-header">
                    
-                    <img class="logodeezer" src="./imagenes/corner-deezer.jpg">
+                    <img class="logodeezer" src="../imagenes/corner-deezer.jpg">
                     
                     <p class="titledeezer">
                         <section class="d">MUZER</section>
@@ -44,11 +45,6 @@
 
           
              <?php
-
-
-            
-
-
                     if (!empty($_SESSION['user'])){
 
                      echo '
@@ -61,8 +57,8 @@
                     <p class="user">' . $_SESSION['user'] .' </p>
                     </section>
                    
-                    <a class="admin" href="src/procesar_form_unlogin.php"><p>Desconectarse</p></a>
-                    <a class="admin" href="src/profile_user.php"><p>Configurar perfil </p></a>
+                    <a class="admin" href="procesar_form_unlogin.php"><p>Desconectarse</p></a>
+                    <a class="admin" href="profile_user.php"><p>Configurar perfil </p></a>
                         
 
                     </section>
@@ -75,7 +71,7 @@
                         echo '<section class="form1-section">  
 
                         
-                            <a class="submit-button-name" type="submit"  href="src/administracion.php"   > Administraciooon </a>           
+                            <a class="submit-button-name" type="submit"  href="administracion.php"   > Administracion </a>           
         
                             </section>
                             ';
@@ -85,7 +81,7 @@
                     else {
                         echo '
                         <section class="sign-out">
-                        <form class="form_sign_in" method="POST" action="src/procesar_form_login.php">
+                        <form class="form_sign_in" method="POST" action="procesar_form_login.php">
 
                             <label class ="label_form" for="user">user</label><br>
                             <input class="input_form" type="text" id="user" name="user" required/><br>
@@ -98,26 +94,24 @@
 
                         </form>
                         
-                        <a class="register" href="src/altausuario.php" >Nuevo usuario</a>
+                   
                         </section>';
                     }
 
                     
               ?>
 
-
-            
-
               </section>
-                <nav class="categories">
-                    <a class="seccion" href="src/seccion1.php">POP</a>
-                    <a class="seccion" href="src/seccion2.php">ROCK</a>
-                    <a class="seccion" href="src/seccion3.php">JAZZ</a>
-                    <a class="seccion" href="src/seccion3.php">FUNK</a>
-                    <a class="seccion" href="src/seccion3.php">R&B</a>
-                    <a class="seccion" href="src/seccion3.php">FUSSION</a>
-                    <a class="seccion" href="src/seccion3.php">FLAMENCO</a>
-                </nav>
+
+
+
+
+        
+
+
+
+
+
 
             </header>
 

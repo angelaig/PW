@@ -50,11 +50,6 @@
 
           
              <?php
-
-
-            
-
-
                     if (!empty($_SESSION['user'])){
 
                      echo '
@@ -81,7 +76,7 @@
                         echo '<section class="form1-section">  
 
                         
-                            <a class="submit-button-name" type="submit"  href="administracion.php"   > Administraciooon </a>           
+                            <a class="submit-button-name" type="submit"  href="administracion.php"   > Administracion </a>           
         
                             </section>
                             ';
@@ -104,25 +99,37 @@
 
                         </form>
                         
-                        <a class="register" href="altausuario.php" >Nuevo usuario</a>
+                   
                         </section>';
                     }
 
                     
               ?>
 
+              </section>
+
+
+
 
             
-              </section>
-                <nav class="categories">
-                    <a class="seccion" href="seccion1.php">POP</a>
-                    <a class="seccion" href="seccion2.php">ROCK</a>
-                    <a class="seccion" href="seccion3.php">JAZZ</a>
-                    <a class="seccion" href="seccion3.php">FUNK</a>
-                    <a class="seccion" href="seccion3.php">R&B</a>
-                    <a class="seccion" href="seccion3.php">FUSSION</a>
-                    <a class="seccion" href="seccion3.php">FLAMENCO</a>
-                </nav>
+             <nav class="categories">
+             <?php 
+                    $secciones = Section::getAllSections();
+                    $n = sizeof($secciones);
+                    for ($x = 0; $x < $n; $x++) {
+
+                        echo '
+                         <form method = "POST" action =  "seccionx.php" >
+                         <button class="seccion" type="submit" id="sname" name="sname"  value ='.$secciones[$x]["sname"].' >  '.  $secciones[$x]["sname"] .' </button>
+                        </form>';
+                    }
+                ?>
+            </nav>
+
+
+
+
+
 
             </header>
 

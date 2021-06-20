@@ -19,15 +19,18 @@
         <body>
      
     
-                <header class="root-header">
+        <header class="root-header">
                 <section class="up-header">
-                    
+                   
                     <img class="logodeezer" src="../imagenes/corner-deezer.jpg">
+                    
                     <p class="titledeezer">
-                        <span class="d">MUZER</span>
+                        <section class="d">MUZER</section>
                        
                     </p>
-                    <?php
+
+          
+             <?php
                     if (!empty($_SESSION['user'])){
 
                      echo '
@@ -40,8 +43,8 @@
                     <p class="user">' . $_SESSION['user'] .' </p>
                     </section>
                    
-                    <a class="admin" href="src/procesar_form_unlogin.php"><p>Desconectarse</p></a>
-                    <a class="admin" href="src/profile_user.php"><p>Configurar perfil </p></a>
+                    <a class="admin" href="procesar_form_unlogin.php"><p>Desconectarse</p></a>
+                    <a class="admin" href="profile_user.php"><p>Configurar perfil </p></a>
                         
 
                     </section>
@@ -54,7 +57,7 @@
                         echo '<section class="form1-section">  
 
                         
-                            <a class="submit-button-name" type="submit"  href="src/administracion.php"   > Administraciooon </a>           
+                            <a class="submit-button-name" type="submit"  href="administracion.php"   > Administracion </a>           
         
                             </section>
                             ';
@@ -64,7 +67,7 @@
                     else {
                         echo '
                         <section class="sign-out">
-                        <form class="form_sign_in" method="POST" action="src/procesar_form_login.php">
+                        <form class="form_sign_in" method="POST" action="procesar_form_login.php">
 
                             <label class ="label_form" for="user">user</label><br>
                             <input class="input_form" type="text" id="user" name="user" required/><br>
@@ -77,7 +80,7 @@
 
                         </form>
                         
-                        <a class="register" href="src/altausuario.php" >Nuevo usuario</a>
+                   
                         </section>';
                     }
 
@@ -86,38 +89,30 @@
 
               </section>
 
-                    
+
+
+
+            
+             <nav class="categories">
+             <?php 
+                    $secciones = Section::getAllSections();
+                    $n = sizeof($secciones);
+                    for ($x = 0; $x < $n; $x++) {
+
+                        echo '
+                         <form method = "POST" action =  "seccionx.php" >
+                         <button class="seccion" type="submit" id="sname" name="sname"  value ='.$secciones[$x]["sname"].' >  '.  $secciones[$x]["sname"] .' </button>
+                        </form>';
+                    }
+                ?>
+            </nav>
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-                </section>
-
-                
-
-                <nav class="categories">
-                    <?php 
-                            $secciones = Section::getAllSections();
-                            $n = sizeof($secciones);
-                            for ($x = 0; $x < $n; $x++) {
-
-                                echo '
-                                <form method = "POST" action = "seccionx.php" >
-                                <button class="seccion" type="submit" id="sname" name="sname"  value ='.$secciones[$x]["sname"].' >  '.  $secciones[$x]["sname"] .' </a>
-                                </form>';
-                            }
-                        ?>
-               </nav>
+            </header>
 
                  
 

@@ -92,23 +92,22 @@
 
               </section>
 
+              </section>
 
 
+              <nav class="categories">
+                    <?php 
+                            $secciones = Section::getAllSections();
+                            $n = sizeof($secciones);
+                            for ($x = 0; $x < $n; $x++) {
 
-            
-             <nav class="categories">
-             <?php 
-                    $secciones = Section::getAllSections();
-                    $n = sizeof($secciones);
-                    for ($x = 0; $x < $n; $x++) {
-
-                        echo '
-                         <form method = "POST" action =  "seccionx.php" >
-                         <button class="seccion" type="submit" id="sname" name="sname"  value ='.$secciones[$x]["sname"].' >  '.  $secciones[$x]["sname"] .' </a>
-                        </form>';
-                    }
-                ?>
-            </nav>
+                                echo '
+                                <form method = "POST" action = "src/seccionx.php" >
+                                <button class="seccion" type="submit" id="sname" name="sname"  value ='.$secciones[$x]["sname"].' >  '.  $secciones[$x]["sname"] .' </a>
+                                </form>';
+                            }
+                        ?>
+               </nav>
 
 
 
