@@ -103,7 +103,7 @@
 
                                 echo '
                                 <form method = "POST" action = "src/seccionx.php" >
-                                <button class="seccion" type="submit" id="sname" name="sname"  value ='.$secciones[$x]["sname"].' >  '.  $secciones[$x]["sname"] .' </a>
+                                <button class="seccion" type="submit" id="sname" name="sname"  value ='.$secciones[$x]["sname"].' >  '.  $secciones[$x]["sname"] .' </button>
                                 </form>';
                             }
                         ?>

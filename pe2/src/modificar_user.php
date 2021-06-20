@@ -3,8 +3,8 @@
 
     session_start();
 
-    include 'users_class.inc.php';
-
+    include_once 'users_class.inc.php';
+    include_once 'sections_class.inc.php';
 
     $user = $_POST["user"];
     $field = $_POST["field"];
@@ -203,6 +203,19 @@
 
                     
               ?>
+                <nav class="categories">
+                    <?php 
+                            $secciones = Section::getAllSections();
+                            $n = sizeof($secciones);
+                            for ($x = 0; $x < $n; $x++) {
+
+                                echo '
+                                <form method = "POST" action = "seccionx.php" >
+                                <button class="seccion" type="submit" id="sname" name="sname"  value ='.$secciones[$x]["sname"].' >  '.  $secciones[$x]["sname"] .' </a>
+                                </form>';
+                            }
+                        ?>
+               </nav>
 
               </section>
 

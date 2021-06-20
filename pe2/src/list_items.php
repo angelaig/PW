@@ -7,8 +7,8 @@
    
    
 
-    include 'items_class.inc.php';
-    
+    include_once 'items_class.inc.php';
+    include_once 'sections_class.inc.php';
   
    
 ?>
@@ -113,6 +113,21 @@
               </section>
 
 
+              <nav class="categories">
+                    <?php 
+                            $secciones = Section::getAllSections();
+                            $n = sizeof($secciones);
+                            for ($x = 0; $x < $n; $x++) {
+
+                                echo '
+                                <form method = "POST" action = "seccionx.php" >
+                                <button class="seccion" type="submit" id="sname" name="sname"  value ='.$secciones[$x]["sname"].' >  '.  $secciones[$x]["sname"] .' </a>
+                                </form>';
+                            }
+                        ?>
+               </nav>
+
+
 
 
 
@@ -144,7 +159,7 @@
                         echo '
                            
                         <a  class="item2" href="itemx.html" >                                        
-                               <img class="imgitem" src=" ../imagenes/'.$items[$x]["img"] .'"> 
+                               <img class="imgitem" src="../imagenes/'.$items[$x]["img"] .'"> 
                               
                                <p class="title2">
                                '.  $items[$x]["artist"] .'

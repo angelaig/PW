@@ -1,7 +1,10 @@
 <?php
     session_start();
      
-    include 'sections_class.inc.php';
+    include_once 'sections_class.inc.php';
+    include_once 'items_class.inc.php';
+
+    $section = $_POST["sname"];
 ?>
 
 <!doctype html>
@@ -122,124 +125,46 @@
             </header>
    
   
-                <main>
+         <main>
                 
-               <section class="itemsrow">
+                <?php 
+                              $items = Item::getAllItemsSection($section);
 
-                        
-                                 <a  class="item2" href="item1.html" >                                        
-                                        <img class="imgitem" src="../imagenes/queen.jpg"> 
-                                       
-                                        <p class="title2">
-                                           Queen
-                                        </p><br>
-                                        <p class="description">
-                                            Single 
-                                          </p>
-                                        
-                                </a>
-                                <a  class="item2" href="item1.html" >                                        
-                                    <img class="imgitem" src="../imagenes/queen.jpg"> 
-                                   
-                                    <p class="title2">
-                                       Queen
-                                    </p><br>
-                                    <p class="description">
-                                        Single 
-                                      </p>
-                                    
-                            </a>
+                              $n = sizeof($items);
+                              echo $n ;
+                              for ($x = 0; $x < $n; $x+=3) {
+      
+                              echo '<section class="itemsrow">';
 
-                            <a  class="item2" href="item1.html" >                                        
-                                <img class="imgitem" src="../imagenes/queen.jpg"> 
-                               
-                                <p class="title2">
-                                   Queen
-                                </p><br>
-                                <p class="description">
-                                    Single 
-                                  </p>
-                                
-                        </a>
+                                                 for ( $j=0 ; $j < 3 ; $j++) {
+                                                    echo     '<a  class="item2" href="itemx.html" >                                        
+                                                        <img class="imgitem" src="../imagenes/'.$items[$x+$j]["img"] .'"> 
+                                                            
+                                                                <p class="title2">
+                                                                '.  $items[$x+$j]["artist"] .'
+                                                                </p><br>
+                                                                <p class="description">
+                                                                '.  $items[$x+$j]["single"] .'
+                                                                </p>
+                                                                
+                                                        </a>';
+                                                 }
+                            
 
-               </section>
+                              echo  '</section>';
+                              }  
                
-               <section class="itemsrow">
-
-
-                <a  class="item2" href="item1.html" >                                        
-                    <img class="imgitem" src="../imagenes/queen.jpg"> 
-                   
-                    <p class="title2">
-                       Queen
-                    </p><br>
-                    <p class="description">
-                        Single 
-                      </p>
-                    
-            </a>
-                                
-            <a  class="item2" href="item1.html" >                                        
-                <img class="imgitem" src="../imagenes/queen.jpg"> 
-               
-                <p class="title2">
-                   Queen
-                </p><br>
-                <p class="description">
-                    Single 
-                  </p>
-                
-        </a>  <a  class="item2" href="item1.html" >                                        
-            <img class="imgitem" src="../imagenes/queen.jpg"> 
-           
-            <p class="title2">
-               Queen
-            </p><br>
-            <p class="description">
-                Single 
-              </p>
-            
-    </a>
-            </section>
-
-            <section class="itemsrow">
-                <a  class="item2" href="item1.html" >                                        
-                    <img class="imgitem" src="../imagenes/queen.jpg"> 
-                   
-                    <p class="title2">
-                       Queen
-                    </p><br>
-                    <p class="description">
-                        Single 
-                      </p>
-                    
-            </a> 
-             <a  class="item2" href="item1.html" >                                        
-                <img class="imgitem" src="../imagenes/queen.jpg"> 
-               
-                <p class="title2">
-                   Queen
-                </p><br>
-                <p class="description">
-                    Single 
-                  </p>
-                
-        </a>  
-        <a  class="item2" href="item1.html" >                                        
-            <img class="imgitem" src="../imagenes/queen.jpg"> 
-           
-            <p class="title2">
-               Queen
-            </p><br>
-            <p class="description">
-                Single 
-              </p>
-            
-    </a>
-                                
-
-            </section>
      
+                ?>
+
+
+
+
+
+
+
+
+
             <section class="navigate-pages">
                 <a class="left-arrow"  href="seccion1.html">
                     <img class="arrows" src="../imagenes/left.png">

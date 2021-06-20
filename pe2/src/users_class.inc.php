@@ -1,6 +1,6 @@
 <?php
 
-include 'datosObject.class.inc.php';
+include_once 'datosObject.class.inc.php';
 
 
 //echo'USER CLASS';

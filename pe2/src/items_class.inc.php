@@ -1,6 +1,6 @@
 <?php
 
-include 'datosObject.class.inc.php';
+include_once 'datosObject.class.inc.php';
 
 
 
@@ -51,6 +51,38 @@ class Item extends DataObject {
 
         try {
             
+            
+            $st->execute();
+       
+            $results = array();
+          
+     
+          $results = $st->fetchAll() ;
+     
+           
+            parent::disconnect($connection);
+
+            if ($results) 
+            return $results;
+         
+                  
+        } catch (PDOException $e) {
+          
+            parent::disconnect($connection);
+            die("Failed search: ".$e->getMessage());
+        }
+    }
+    public static function getAllItemsSection($section) {
+        $connection = parent::connect();
+
+        $sql = "SELECT * FROM " . TABLE_ITEMS . " WHERE genre=:genre ";
+
+        $st = $connection->prepare($sql);
+       
+
+        try {
+         
+            $st->bindValue(":genre", $section);
             
             $st->execute();
        
