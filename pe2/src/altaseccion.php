@@ -19,10 +19,24 @@
         
 
 
-    <script>
+
+
+
+
+<script type="text/javascript">
+
+    //Prohibimos creación vacía de sección
+    function validate(){
+        sname = document.getElementById("sname").value;
+
+        if( sname == null || sname=="" ) {
+            alert("El campo no puede estar  vacío");
+            return false;
+       }
+       return true;
+
+    }
   
-
-
   </script>
 
 
@@ -122,24 +136,19 @@
 
                 
 
-            
-                    
-                           
-            
+    
                                         <section class="alta-seccion-add-section"  >                                        
-                                                
-                                        <form  class="add-section-form" method="POST" action= "procesar_form_altaseccion.php" >
+                                      
+                                        <form  class="add-section-form" method="POST" action= "procesar_form_altaseccion.php" onsubmit="return validate();"  >
                                        
                                         <label class ="label_form_seccion" for="sname">Nombre de nueva sección </label><br>
                                         <input class="input_form_modify" type="text" id="sname" name="sname" /><br> 
                                         <button class="submit-button-name" type="submit"  id="submit" name="submit"    > Añadir </a>           
         
                                         </form >
-                              
-                      
+                        
 
-
-                                        </section>
+                                        </section>'
 
                                    
 

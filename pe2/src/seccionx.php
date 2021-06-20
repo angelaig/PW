@@ -173,21 +173,38 @@
 
 
             <section class="navigate-pages">
-                <a class="left-arrow"  href="seccion1.php">
-                    <img class="arrows" src="../imagenes/left.png">
-                </a>
-                <a class="actividad primera-actividad" href="seccion1.php"> 1 </a>
-                <a class="sections" href="seccion1.php"> 2  </a>
-                <a class="sections" href="seccion2.php"> 3 </a>
-                <a class="sections" href="seccion3.php"> 4 </a>
-                <a class="sections" href="seccion3.php"> 5 </a>
-                <a class="sections" href="seccion3.php"> 6 </a>
-                <a  class="right-arrow" href="seccion1.php">
-                    <img class="arrows" src="../imagenes/right.png">
-                </a>
-            </section>
 
 
+            <?php 
+
+
+                $secciones = Section::getAllSections();
+                $n = sizeof($secciones);
+
+              echo   '<section class="navigate-pages">
+              
+
+                <form method = "POST" action =  "seccionx.php" >
+                    <button class="actividad primera-actividad" type="submit" id="sname" name="sname" value ="'.$secciones[0]["sname"].'" >
+                     <img class="arrows" src="../imagenes/left.png"></button>
+                 </form>';
+                  
+               
+                for ($x = 0; $x < $n; $x++) {
+
+                    echo '
+                    <form method = "POST" action =  "seccionx.php" >
+                    <button class="actividad primera-actividad" type="submit" id="sname" name="sname" value ="'.$secciones[$x]["sname"].'" >'.$x .'</button>
+                    </form>';
+                }
+                echo'
+                <form method = "POST" action =  "seccionx.php" >
+                <button class="actividad primera-actividad" type="submit" id="sname" name="sname" value ="'.$secciones[$n-1]["sname"].'" >
+                 <img class="arrows" src="../imagenes/right.png"></button>
+                </form> </section>';
+
+
+        ?>
 
         </main>
             <footer class="footer">
